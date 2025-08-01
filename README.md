@@ -1,54 +1,61 @@
-# React + TypeScript + Vite
+# فروشگاه آنلاین - React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+یک فروشگاه آنلاین کامل با پنل مدیریت و API واقعی
 
-Currently, two official plugins are available:
+## ویژگی‌ها
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🛒 نمایش محصولات با طراحی مدرن
+- 🔧 پنل ادمین برای مدیریت محصولات
+- 🌐 پشتیبانی کامل از RTL
+- 📱 طراحی ریسپانسیو
+- 🗄️ API واقعی با JSON Server
 
-## Expanding the ESLint configuration
+## راه‌اندازی
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### 1. نصب وابستگی‌ها
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+### 2. راه‌اندازی API Server
+```bash
+npm run server
 ```
+سرور API روی پورت 3001 اجرا می‌شود
+
+### 3. راه‌اندازی Frontend
+```bash
+npm run dev
+```
+سایت روی پورت 5173 اجرا می‌شود
+
+## دسترسی‌ها
+
+- **سایت اصلی**: http://localhost:5173
+- **پنل ادمین**: http://localhost:5173/admin
+- **API**: http://localhost:3001/products
+
+## اطلاعات ورود ادمین
+
+- نام کاربری: `admin`
+- رمز عبور: `admin123`
+
+## ساختار پروژه
+
+```
+src/
+├── components/          # کامپوننت‌های UI
+├── pages/              # صفحات اصلی
+├── services/           # سرویس‌های API
+├── store/              # مدیریت state
+└── types/              # تایپ‌های TypeScript
+```
+
+## امکانات پنل ادمین
+
+- ✅ افزودن محصول جدید
+- ✅ ویرایش محصولات موجود
+- ✅ حذف محصولات
+- ✅ مشاهده لیست کامل محصولات
+
+تمامی تغییرات در فایل `db.json` ذخیره می‌شود و در کل سایت اعمال می‌گردد.
