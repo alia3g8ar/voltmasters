@@ -1,4 +1,3 @@
-import FooterBrand from './FooterBrand';
 import FooterLinks from './FooterLinks';
 
 export default function Footer() {

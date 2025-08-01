@@ -1,5 +1,3 @@
-import { Product } from '../types/Product';
-import { Article } from '../types/Article';
 import { SearchItem } from '../types/SearchItem';
 import { ProductService } from './ProductService';
 import { ArticleService } from './ArticleService';
@@ -22,11 +20,12 @@ export class SearchService {
     ];
 
     return searchItems.filter(item => {
+      const itemName = item.type === 'product' ? (item as any).name : (item as any).title;
+      const itemDesc = item.type === 'product' ? (item as any).description : (item as any).excerpt;
+      
       const matchesQuery = !query || 
-        item.name?.toLowerCase().includes(query.toLowerCase()) ||
-        item.title?.toLowerCase().includes(query.toLowerCase()) ||
-        item.description?.toLowerCase().includes(query.toLowerCase()) ||
-        item.excerpt?.toLowerCase().includes(query.toLowerCase());
+        itemName?.toLowerCase().includes(query.toLowerCase()) ||
+        itemDesc?.toLowerCase().includes(query.toLowerCase());
 
       const matchesType = !filters?.type || item.type === filters.type;
       const matchesCategory = !filters?.category || item.category === filters.category;
@@ -40,7 +39,7 @@ export class SearchService {
     
     const items = await this.search(query);
     const suggestions = items
-      .map(item => item.name || item.title)
+      .map(item => item.type === 'product' ? (item as any).name : (item as any).title)
       .filter(name => name?.toLowerCase().includes(query.toLowerCase()))
       .slice(0, 5);
 
